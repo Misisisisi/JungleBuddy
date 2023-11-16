@@ -20,7 +20,7 @@ public class PlantDto {
     private String idealLight;
     private String toleratedLight;
     private String watering;
-    private String insects;
-    private String diseases;
-    private List<String> use;
+//    private String insects;
+//    private String diseases;
+//    private List<String> use;
 }

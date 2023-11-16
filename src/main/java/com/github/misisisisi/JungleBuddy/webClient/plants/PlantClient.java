@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -23,7 +25,6 @@ public class PlantClient {
         HttpEntity<Object> entity = new HttpEntity<Object>(headers);
         return entity;
     }
-
 
     public PlantDto getPlantByLatinName(String latinName) {
 
@@ -45,11 +46,40 @@ public class PlantClient {
                 .idealLight(mainPlantDto.getIdeallight())
                 .toleratedLight(mainPlantDto.getToleratedlight())
                 .watering(mainPlantDto.getWatering())
-                .insects(mainPlantDto.getInsects())
-                .diseases(mainPlantDto.getDiseases())
-                .use(mainPlantDto.getUse())
+//                .insects(mainPlantDto.getInsects())
+//                .diseases(mainPlantDto.getDiseases())
+//                .use(mainPlantDto.getUse())
                 .build();
     }
 
+    //    metoda działa, ale do poprawy zwracanie insects, diseases i use
+    public List<PlantDto> getAllPlants() {
+        HttpEntity<Object> entity = getObjectHttpEntity();
 
+        List<PlantDto> list = new ArrayList<>();
+        ResponseEntity<MainPlantDto[]> exchange = restTemplate.exchange("https://house-plants.p.rapidapi.com/all", HttpMethod.GET, entity, MainPlantDto[].class);
+        MainPlantDto[] body = exchange.getBody();
+
+        for (MainPlantDto b : body) {
+            PlantDto build = PlantDto.builder()
+                    .latin(b.getLatin())
+                    .family(b.getFamily())
+                    .commonName(b.getCommon())
+                    .category(b.getCategory())
+                    .climate(b.getClimate())
+                    .maxTempInCelsius(b.getTempmax().getCelsius())
+                    .maxTempInFahrenheit(b.getTempmax().getFahrenheit())
+                    .minTempInCelsius(b.getTempmin().getCelsius())
+                    .minTempInFahrenheit(b.getTempmin().getFahrenheit())
+                    .idealLight(b.getIdeallight())
+                    .toleratedLight(b.getToleratedlight())
+                    .watering(b.getWatering())
+//                .insects(b.getInsects())
+//                .diseases(b.getDiseases())
+//                .use(b.getUse())
+                    .build();
+            list.add(build);
+        }
+        return list;
+    }
 }

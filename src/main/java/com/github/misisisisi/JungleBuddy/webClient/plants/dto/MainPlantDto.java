@@ -17,8 +17,8 @@ public class MainPlantDto {
     private String ideallight;
     private String toleratedlight;
     private String watering;
-    private String insects;
-    private String diseases;
-    private List<String> use;
+//    private String insects;
+//    private String diseases;
+//    private List<String> use;
 
 }

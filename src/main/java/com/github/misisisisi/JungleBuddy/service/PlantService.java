@@ -15,8 +15,8 @@ public class PlantService {
 
     private final PlantClient plantClient;
 
-    public PlantDto getByLatinName(String latinName) {
-        PlantDto plantByLatinName = plantClient.getPlantByLatinName(latinName);
+    public List<PlantDto> getByLatinName(String latinName) {
+        List<PlantDto> plantByLatinName = plantClient.getPlantByLatinName(latinName);
         return plantByLatinName;
     }
 

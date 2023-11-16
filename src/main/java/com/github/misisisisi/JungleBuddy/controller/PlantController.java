@@ -16,7 +16,7 @@ public class PlantController {
     private final PlantService plantService;
 
     @GetMapping("/{name}")
-    public PlantDto getByLatin(@PathVariable("name") String latinName){
+    public List<PlantDto> getByLatin(@PathVariable("name") String latinName){
         return plantService.getByLatinName(latinName);
     }
 

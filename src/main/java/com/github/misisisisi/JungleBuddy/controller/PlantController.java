@@ -15,6 +15,10 @@ public class PlantController {
 
     private final PlantService plantService;
 
+    @GetMapping("/all")
+    public List<PlantDto> getAllPlant(){
+        return plantService.getALlPlants();
+    }
     @GetMapping("/latin/{name}")
     public List<PlantDto> getByLatin(@PathVariable("name") String latinName){
         return plantService.getByLatinName(latinName);
@@ -23,8 +27,9 @@ public class PlantController {
     public List<PlantDto> getByCommon(@PathVariable("name") String commonName){
         return plantService.getByCommonName(commonName);
     }
-    @GetMapping("/all")
-    public List<PlantDto> getAllPlant(){
-        return plantService.getALlPlants();
+      @GetMapping("/category/{name}")
+    public List<PlantDto> getByCategory(@PathVariable("name") String categoryName){
+        return plantService.getByCategory(categoryName);
     }
+
 }

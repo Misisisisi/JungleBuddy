@@ -52,9 +52,14 @@ public class PlantClient {
         return list;
     }
 
-    public List<PlantDto> getPlantByLatinName(String latinName) {
-        ResponseEntity<MainPlantDto[]> exchange = restTemplate.exchange(URL + "/latin/{name}", HttpMethod.GET, getObjectHttpEntity(), MainPlantDto[].class, latinName);
+
+    public List<PlantDto> getPlants(String kindOfName,String name) {
+        ResponseEntity<MainPlantDto[]> exchange = restTemplate.exchange(URL + "/{kindOfName}/{name}", HttpMethod.GET, getObjectHttpEntity(), MainPlantDto[].class, kindOfName, name);
         return getPlantDtoList(exchange);
+    }
+    public List<PlantDto> getPlantByLatinName(String latinName) {
+        return getPlants("latin", latinName);
+//        return getPlantDtoList(plants);
     }
 
     public List<PlantDto> getAllPlants() {
@@ -62,5 +67,7 @@ public class PlantClient {
         return getPlantDtoList(exchange);
     }
 
-
+    public List<PlantDto> getPlantByCommonName(String commonName) {
+        return getPlants("common", commonName);
+    }
 }

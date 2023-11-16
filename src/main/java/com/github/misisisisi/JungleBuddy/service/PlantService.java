@@ -16,12 +16,15 @@ public class PlantService {
     private final PlantClient plantClient;
 
     public List<PlantDto> getByLatinName(String latinName) {
-        List<PlantDto> plantByLatinName = plantClient.getPlantByLatinName(latinName);
-        return plantByLatinName;
+        return plantClient.getPlantByLatinName(latinName);
     }
 
+    public List<PlantDto> getByCommonName(String commonName) {
+        return  plantClient.getPlantByCommonName(commonName);
+    }
+
+
     public List<PlantDto> getALlPlants() {
-        List<PlantDto> allPlants = plantClient.getAllPlants();
-        return allPlants;
+        return plantClient.getAllPlants();
     }
 }

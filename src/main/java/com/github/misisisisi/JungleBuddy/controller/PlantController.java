@@ -15,11 +15,14 @@ public class PlantController {
 
     private final PlantService plantService;
 
-    @GetMapping("/{name}")
+    @GetMapping("/latin/{name}")
     public List<PlantDto> getByLatin(@PathVariable("name") String latinName){
         return plantService.getByLatinName(latinName);
     }
-
+    @GetMapping("/common/{name}")
+    public List<PlantDto> getByCommon(@PathVariable("name") String commonName){
+        return plantService.getByCommonName(commonName);
+    }
     @GetMapping("/all")
     public List<PlantDto> getAllPlant(){
         return plantService.getALlPlants();

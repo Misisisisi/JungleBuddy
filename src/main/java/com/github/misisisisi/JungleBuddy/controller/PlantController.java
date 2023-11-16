@@ -2,7 +2,6 @@ package com.github.misisisisi.JungleBuddy.controller;
 
 import com.github.misisisisi.JungleBuddy.DTOs.PlantDto;
 import com.github.misisisisi.JungleBuddy.service.PlantService;
-import com.github.misisisisi.JungleBuddy.webClient.plants.dto.MainPlantDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

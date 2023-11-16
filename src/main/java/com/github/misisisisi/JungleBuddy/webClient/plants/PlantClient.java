@@ -10,12 +10,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class PlantClient {
+    public static final String URL = "https://house-plants.p.rapidapi.com";
     private RestTemplate restTemplate = new RestTemplate();
 
     private static HttpEntity<Object> getObjectHttpEntity() {
@@ -26,38 +25,9 @@ public class PlantClient {
         return entity;
     }
 
-    public PlantDto getPlantByLatinName(String latinName) {
-
-        ResponseEntity<MainPlantDto[]> exchange = restTemplate.exchange("https://house-plants.p.rapidapi.com/latin/{name}", HttpMethod.GET, getObjectHttpEntity(), MainPlantDto[].class, latinName);
+    private static List<PlantDto> getPlantDtoList(ResponseEntity<MainPlantDto[]> exchange) {
         MainPlantDto[] body = exchange.getBody();
-        Optional<MainPlantDto> first = Arrays.stream(body).findFirst();
-        MainPlantDto mainPlantDto = first.get();
-
-        return PlantDto.builder()
-                .latin(mainPlantDto.getLatin())
-                .family(mainPlantDto.getFamily())
-                .commonName(mainPlantDto.getCommon())
-                .category(mainPlantDto.getCategory())
-                .climate(mainPlantDto.getClimate())
-                .maxTempInCelsius(mainPlantDto.getTempmax().getCelsius())
-                .maxTempInFahrenheit(mainPlantDto.getTempmax().getFahrenheit())
-                .minTempInCelsius(mainPlantDto.getTempmin().getCelsius())
-                .minTempInFahrenheit(mainPlantDto.getTempmin().getFahrenheit())
-                .idealLight(mainPlantDto.getIdeallight())
-                .toleratedLight(mainPlantDto.getToleratedlight())
-                .watering(mainPlantDto.getWatering())
-                .insects(mainPlantDto.getInsects())
-                .diseases(mainPlantDto.getDiseases())
-                .use(mainPlantDto.getUse())
-                .build();
-    }
-
-    public List<PlantDto> getAllPlants() {
-        HttpEntity<Object> entity = getObjectHttpEntity();
-
         List<PlantDto> list = new ArrayList<>();
-        ResponseEntity<MainPlantDto[]> exchange = restTemplate.exchange("https://house-plants.p.rapidapi.com/all", HttpMethod.GET, entity, MainPlantDto[].class);
-        MainPlantDto[] body = exchange.getBody();
 
         for (MainPlantDto b : body) {
             PlantDto build = PlantDto.builder()
@@ -81,4 +51,16 @@ public class PlantClient {
         }
         return list;
     }
+
+    public List<PlantDto> getPlantByLatinName(String latinName) {
+        ResponseEntity<MainPlantDto[]> exchange = restTemplate.exchange(URL + "/latin/{name}", HttpMethod.GET, getObjectHttpEntity(), MainPlantDto[].class, latinName);
+        return getPlantDtoList(exchange);
+    }
+
+    public List<PlantDto> getAllPlants() {
+        ResponseEntity<MainPlantDto[]> exchange = restTemplate.exchange(URL + "/all", HttpMethod.GET, getObjectHttpEntity(), MainPlantDto[].class);
+        return getPlantDtoList(exchange);
+    }
+
+
 }

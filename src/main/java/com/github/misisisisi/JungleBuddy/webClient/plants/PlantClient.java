@@ -46,13 +46,12 @@ public class PlantClient {
                 .idealLight(mainPlantDto.getIdeallight())
                 .toleratedLight(mainPlantDto.getToleratedlight())
                 .watering(mainPlantDto.getWatering())
-//                .insects(mainPlantDto.getInsects())
-//                .diseases(mainPlantDto.getDiseases())
-//                .use(mainPlantDto.getUse())
+                .insects(mainPlantDto.getInsects())
+                .diseases(mainPlantDto.getDiseases())
+                .use(mainPlantDto.getUse())
                 .build();
     }
 
-    //    metoda działa, ale do poprawy zwracanie insects, diseases i use
     public List<PlantDto> getAllPlants() {
         HttpEntity<Object> entity = getObjectHttpEntity();
 
@@ -74,9 +73,9 @@ public class PlantClient {
                     .idealLight(b.getIdeallight())
                     .toleratedLight(b.getToleratedlight())
                     .watering(b.getWatering())
-//                .insects(b.getInsects())
-//                .diseases(b.getDiseases())
-//                .use(b.getUse())
+                    .insects(b.getInsects())
+                    .diseases(b.getDiseases())
+                    .use(b.getUse())
                     .build();
             list.add(build);
         }

@@ -1,5 +1,6 @@
 package com.github.misisisisi.JungleBuddy.DTOs;
 
+import com.github.misisisisi.JungleBuddy.webClient.plants.deserialization.ApiResponse;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -20,7 +21,7 @@ public class PlantDto {
     private String idealLight;
     private String toleratedLight;
     private String watering;
-//    private String insects;
-//    private String diseases;
-//    private List<String> use;
+    private ApiResponse insects;
+    private ApiResponse diseases;
+    private ApiResponse use;
 }

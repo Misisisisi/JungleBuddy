@@ -35,6 +35,7 @@ public class PlantClient {
                     .family(b.getFamily())
                     .commonName(b.getCommon())
                     .category(b.getCategory())
+                    .origin(b.getOrigin())
                     .climate(b.getClimate())
                     .maxTempInCelsius(b.getTempmax().getCelsius())
                     .maxTempInFahrenheit(b.getTempmax().getFahrenheit())
@@ -68,7 +69,11 @@ public class PlantClient {
     public List<PlantDto> getPlantByCommonName(String commonName) {
         return getPlantsBy("common", commonName);
     }
-    public List<PlantDto> getPlantByCategory(String categoryName) {
-        return getPlantsBy("category", categoryName);
+    public List<PlantDto> getPlantByCategory(String category) {
+        return getPlantsBy("category", category);
+    }
+
+    public List<PlantDto> getPlantByOrigin(String origin) {
+        return getPlantsBy("origin", origin);
     }
 }

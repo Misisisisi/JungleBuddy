@@ -13,6 +13,7 @@ public class PlantDto {
     private String family;
     private List<String> commonName;
     private String category;
+    private String origin;
     private String climate;
     private int maxTempInCelsius;
     private double maxTempInFahrenheit;

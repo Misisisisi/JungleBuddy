@@ -27,9 +27,14 @@ public class PlantController {
     public List<PlantDto> getByCommon(@PathVariable("name") String commonName){
         return plantService.getByCommonName(commonName);
     }
-      @GetMapping("/category/{name}")
-    public List<PlantDto> getByCategory(@PathVariable("name") String categoryName){
-        return plantService.getByCategory(categoryName);
+      @GetMapping("/category/{category}")
+    public List<PlantDto> getByCategory(@PathVariable("category") String category){
+        return plantService.getByCategory(category);
+    }
+
+    @GetMapping("/origin/{origin}")
+    public List<PlantDto> getByOrigin(@PathVariable("origin") String origin){
+        return plantService.getByOrigin(origin);
     }
 
 }

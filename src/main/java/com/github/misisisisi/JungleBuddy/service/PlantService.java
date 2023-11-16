@@ -27,9 +27,12 @@ public class PlantService {
         return  plantClient.getPlantByCommonName(commonName);
     }
 
-    public List<PlantDto> getByCategory(String categoryName) {
-        return  plantClient.getPlantByCategory(categoryName);
+    public List<PlantDto> getByCategory(String category) {
+        return  plantClient.getPlantByCategory(category);
     }
 
+    public List<PlantDto> getByOrigin(String origin) {
+        return  plantClient.getPlantByOrigin(origin);
+    }
 
 }

@@ -12,6 +12,7 @@ public class MainPlantDto {
     private String family;
     private List<String> common;
     private String category;
+    private String origin;
     private String climate;
     private TempMaxDto tempmax;
     private TempMinDto tempmin;
